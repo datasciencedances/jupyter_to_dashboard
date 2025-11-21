@@ -10,11 +10,11 @@ TEMPLATE = """<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://datasciencedances.com/img/dsd3-favicon.jpg" type="image/x-icon">
     <title>F88 - {title}</title>
-    <link href="" rel="stylesheet">
-    <script src=""></script>
-    <script src=""></script>
-    <link href="" rel="stylesheet">
-    <script src="" defer></script>
+    <link href="https://raw.githubusercontent.com/datasciencedances/jupyter_to_dashboard/refs/heads/master/gridstack.min.css" rel="stylesheet">
+    <script src="https://raw.githubusercontent.com/datasciencedances/jupyter_to_dashboard/refs/heads/master/gridstack-all.js"></script>
+    <script src="https://raw.githubusercontent.com/datasciencedances/jupyter_to_dashboard/refs/heads/master/iconify.min.js"></script>
+    <link href="https://raw.githubusercontent.com/datasciencedances/jupyter_to_dashboard/refs/heads/master/dashboardtify.css" rel="stylesheet">
+    <script src="https://raw.githubusercontent.com/datasciencedances/jupyter_to_dashboard/refs/heads/master/dashboardtify.js" defer></script>
   </head>
   <body>
     <div id="loader-container" class="loader-container">
