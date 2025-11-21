@@ -1,0 +1,215 @@
+body.drawer-open {
+  overflow: hidden;
+}
+.top-right {
+  position: absolute;
+  top: -4px;
+  right: 15px;
+  z-index: 3;
+}
+.top-right .iconify {
+  width: 20px;
+  height: 20px;
+  background: rgb(255, 255, 255);
+  border-radius: 50px;
+  border: 1px solid grey;
+  cursor: pointer;
+  color: grey;
+}
+.loader-container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+.loader-container-small {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+#dashboard-container {
+  background-color: rgb(249, 251, 252);
+  padding: 1em;
+}
+#topBar {
+  height: 40px;
+  background-color: rgba(80, 158, 227);
+  z-index: 999;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  display: flex;
+  align-items: center;
+}
+.grid-stack-item-content {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 1px 3px rgb(0 0 0 / 13%);
+}
+#drawer {
+  position: fixed;
+  top: 60px;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  background-color: #f0f0f0;
+  transition: left 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 998;
+  overflow-y: auto;
+}
+#drawer ul {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+}
+#overlay {
+  display: none;
+  position: fixed;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 997;
+}
+.app-bar-button {
+  width: 40px;
+}
+.centered {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  align-items: center;
+}
+.hidden {
+  display: none !important;
+}
+#notebookContainer {
+  height: 100vh;
+  width: 100vw;
+}
+#notebookIframe {
+  height: 100%;
+  width: 100%;
+}
+.overlay-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 1;
+}
+.grid-stack-item {
+  position: relative;
+}
+.margin-bottom-100 {
+  margin-bottom: 100px;
+}
+.grid-stack-trash {
+  margin-top: 1em;
+}
+.grid-stack-main .overlay-card {
+  cursor: grab;
+}
+.default-cell {
+  margin: 1em;
+}
+.white-bg {
+  transition: background-color 0.3s ease;
+  background-color: rgb(255, 255, 255);
+  color: rgb(80, 158, 227);
+  cursor: pointer;
+}
+#doneBtn {
+  border: none;
+  border-radius: 10%;
+  font-weight: bold;
+  padding: 10px;
+  margin-left: 10px;
+}
+.iconify.white-bg {
+  border-radius: 30%;
+  width: 30px;
+  height: 30px;
+}
+.white-bg:hover {
+  background-color: rgb(80, 158, 227);
+  color: white;
+}
+#topBarEdit {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+#topBarView {
+  position: relative;
+  width: 100%;
+}
+#closeBtn {
+  position: absolute;
+  top: -5px;
+  right: 15px;
+}
+#closeBtn .iconify {
+  color: rgb(255, 255, 255);
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.tooltip-container {
+  position: relative;
+}
+.tooltip {
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+#viewDashboardBtn {
+  margin-left: 30px
+}
+#editBtn {
+  margin-left: 30px
+}
+.jp-RenderedHTMLCommon {
+  padding: 0 !important;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
