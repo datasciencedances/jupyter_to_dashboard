@@ -1,20 +1,20 @@
 import base64
 import argparse
 from pathlib import Path
-import yaml
-
+import json
 TEMPLATE = """<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://datasciencedances.com/img/dsd3-favicon.jpg" type="image/x-icon">
+    <link rel="icon" href="{logo}" type="image/x-icon">
     <title>F88 - {title}</title>
-    <link href="https://raw.githubusercontent.com/datasciencedances/jupyter_to_dashboard/refs/heads/master/gridstack.min.css" rel="stylesheet">
-    <script src="https://raw.githubusercontent.com/datasciencedances/jupyter_to_dashboard/refs/heads/master/gridstack-all.js"></script>
-    <script src="https://raw.githubusercontent.com/datasciencedances/jupyter_to_dashboard/refs/heads/master/iconify.min.js"></script>
-    <link href="https://raw.githubusercontent.com/datasciencedances/jupyter_to_dashboard/refs/heads/master/dashboardtify.css" rel="stylesheet">
-    <script src="https://raw.githubusercontent.com/datasciencedances/jupyter_to_dashboard/refs/heads/master/dashboardtify.js" defer></script>
+    <link href="https://www.dashboardtify.com/gridstack/gridstack.min.css" rel="stylesheet">
+    <script src="https://www.dashboardtify.com/gridstack/gridstack-all.js"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <link href="https://www.dashboardtify.com/1.6/dashboardtify.css" rel="stylesheet">
+    <script src="https://www.dashboardtify.com/1.6/dashboardtify.js" defer></script>
+
   </head>
   <body>
     <div id="loader-container" class="loader-container">
@@ -52,6 +52,7 @@ def build_html(config: dict):
     # Tên file (không phần mở rộng) dùng cho fileName và title mặc định
     output_path = Path(config["output"]).expanduser().resolve()
     html_content = TEMPLATE.format(
+        logo=config["logo"],
         title=config["title"],
         file_name=config["title"],
         notebook_base64=notebook_b64,
@@ -69,7 +70,7 @@ def main():
     args = args.parse_args()
     path_config = Path(args.config).expanduser().resolve()
     with open(path_config, "r") as f:
-        config = yaml.load(f, yaml.SafeLoader)
+        config = json.load(f)
     build_html(config)
   
 if __name__ == "__main__":
