@@ -35,17 +35,16 @@ TEMPLATE = """<!DOCTYPE html>
 
     <script>
       // Các biến config gốc
-      var fileName = '{file_name}';
-      var savedData = {saved_data};
-      var edit = false;
+      var fileName = '{file_name}'
+      var savedData = {saved_data}
+      var edit = false
     </script>
-
     <script>
       // Base64 của notebook HTML được nhúng trực tiếp
-      var notebookBase64 = "{notebook_base64}";
+      var notebookBase64 = "{notebook_base64}"
 
       // Biến urlNotebook dùng data URL thay vì phải upload lên mạng
-      var urlNotebook = "data:text/html;base64," + notebookBase64;
+      var urlNotebook = "data:text/html;base64," + notebookBase64
     </script>
   </body>
 </html>
@@ -65,8 +64,8 @@ def build_html(config: dict):
     script_dir = Path(__file__).parent
     
     # Đọc CSS files
-    gridstack_css_path = script_dir / "gridstack.min.css"
-    dashboardtify_css_path = script_dir / "dashboardtify.css"
+    gridstack_css_path = script_dir / "assets" / "viewer" / "gridstack.min.css"
+    dashboardtify_css_path = script_dir / "assets" / "viewer" / "dashboardtify.css"
     
     if not gridstack_css_path.is_file():
         raise FileNotFoundError(f"Không tìm thấy file: {gridstack_css_path}")
@@ -77,9 +76,9 @@ def build_html(config: dict):
     dashboardtify_css = dashboardtify_css_path.read_text(encoding="utf-8")
     
     # Đọc JS files
-    gridstack_js_path = script_dir / "gridstack-all.js"
-    iconify_js_path = script_dir / "iconify.min.js"
-    dashboardtify_js_path = script_dir / "dashboardtify.js"
+    gridstack_js_path = script_dir / "assets" / "viewer" / "gridstack-all.js"
+    iconify_js_path = script_dir / "assets" / "viewer" / "iconify.min.js"
+    dashboardtify_js_path = script_dir / "assets" / "viewer" / "dashboardtify-viewer.js"
     
     if not gridstack_js_path.is_file():
         raise FileNotFoundError(f"Không tìm thấy file: {gridstack_js_path}")
@@ -97,7 +96,20 @@ def build_html(config: dict):
     gridstack_js = gridstack_js.replace("</script>", "<\\/script>")
     iconify_js = iconify_js.replace("</script>", "<\\/script>")
     dashboardtify_js = dashboardtify_js.replace("</script>", "<\\/script>")
+    # Ép kiểu các trường x,y,w,h,id về int
+    def _convert_item(item):
+        out = dict(item)
+        for k in ['x', 'y', 'w', 'h', 'id']:
+            # Nếu key có tồn tại
+            if k in out:
+                try:
+                    out[k] = int(out[k])
+                except (ValueError, TypeError):
+                    pass
+        return out
 
+    new_saved_data = json.dumps([_convert_item(item) for item in config["saved_data"]])
+    
     # Tên file (không phần mở rộng) dùng cho fileName và title mặc định
     output_path = Path(config["output"]).expanduser().resolve()
     html_content = TEMPLATE.format(
@@ -105,7 +117,7 @@ def build_html(config: dict):
         title=config["title"],
         file_name=config["title"],
         notebook_base64=notebook_b64,
-        saved_data=config["saved_data"],
+        saved_data=new_saved_data,
         gridstack_css=gridstack_css,
         dashboardtify_css=dashboardtify_css,
         gridstack_js=gridstack_js,

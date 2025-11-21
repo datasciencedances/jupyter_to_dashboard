@@ -23,14 +23,14 @@ TEMPLATE = """<!DOCTYPE html>
 
     <script>
       // Các biến config gốc
-      var fileName = '{file_name}';
-      var savedData = {saved_data};
+      var fileName = '{file_name}'
+      var savedData = {saved_data}
       var edit = false;
     </script>
 
     <script>
       // Base64 của notebook HTML được nhúng trực tiếp
-      var notebookBase64 = "{notebook_base64}";
+      var notebookBase64 = "{notebook_base64}"
 
       // Biến urlNotebook dùng data URL thay vì phải upload lên mạng
       var urlNotebook = "data:text/html;base64," + notebookBase64;
@@ -51,6 +51,8 @@ def build_html(config: dict):
 
     # Tên file (không phần mở rộng) dùng cho fileName và title mặc định
     output_path = Path(config["output"]).expanduser().resolve()
+    saved_data = json.dumps(config["saved_data"])
+    print(saved_data)
     html_content = TEMPLATE.format(
         logo=config["logo"],
         title=config["title"],

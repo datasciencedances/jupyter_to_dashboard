@@ -1,5 +1,5 @@
 {
-  "saved_data": [],
+  "saved_data": [{"x":0,"y":0,"w":6,"h":3,"id":"8"},{"x":0,"y":3,"w":6,"h":3,"id":"3"},{"x":0,"y":6,"w":6,"h":3,"id":"6"},{"x":0,"y":9,"w":6,"h":3,"id":"5"},{"x":0,"y":12,"w":6,"h":3,"id":"4"},{"x":0,"y":15,"w":6,"h":3,"id":"2"},{"id":0,"x":0,"y":18,"w":10}],
   "input": "D:\\Workspace\\F88\\f88_ml_customer_segmentation_analytics\\notebooks\\pipeline-02-binarize_data_ver_3.html",
   "output": "pipeline-02-binarize_data_ver_3_embedded.html",
   "title": "pipeline-02-binarize_data_ver_3",
